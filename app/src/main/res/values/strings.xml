@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Bits and Pizzas</string>
+    <string name="create_order">Create Order</string>
+    <string name="create_order_title">Create Order</string>
+    <string name="action_share">Share</string>
+    <string name="title_top">Top fragment</string>
+    <string-array name="pizzas">
+        <item>Diavolo</item>
+        <item>Funghi</item>
+    </string-array>
+    <string-array name="pasta">
+        <item>Spaghetti Bolognese</item>
+        <item>Lasagne</item>
+    </string-array>
+    <string-array name="stores">
+        <item>Cambridge</item>
+        <item>Sebastopol</item>
+    </string-array>
+    <string-array name="tabs">
+        <item>Home</item>
+        <item>Pizza</item>
+        <item>Pasta</item>
+        <item>Stores</item>
+    </string-array>
+    <string name="company_name">Bits and Pizzas</string>
+    <string name="restaurant_image">Restaurant image</string>
+    <string name="home_text">Since we opened our doors in 2017, Bits and Pizzas
+ has built its reputation as one of America’s best Italian-Digital
+ restaurants. Some people believe eating out is about being with your
+ friends and family. We believe that good food is best enjoyed while
+ staring at your phone.</string>
+    <string name="order_name_hint">Please enter your name</string>
+    <string name="order_details_hint">Please enter your order</string>
+    <string name="total_amount_title">Total Amount</string>
+    <string name="tips_title">Tips</string>
+    <string name="number_of_people_title">No. of people</string>
+    <string name="tip_percentage_title">Tip Percentage</string>
+    <string name="tip_percent_title_1">15%</string>
+    <string name="tip_percent_title_2">20%</string>
+    <string name="tip_percent_title_other">Other</string>
+    <string name="btn_reset_title">Reset</string>
+    <string name="btn_calculate_title">Calculate</string>
+    <string name="tip_amount_title">Tip Amount</string>
+    <string name="total_pay_title">Total to Pay</string>
+    <string name="tip_person_title">Tip per Person</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

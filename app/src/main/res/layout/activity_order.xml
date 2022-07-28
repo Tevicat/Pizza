@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--координируем работу CoordinatorLayout-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <!--300 dp -максимальная высота сворачивающейся панели-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <!--помещаем в CollapsingToolbarLayout то, что должно сворачиваться при прокрутке - то есть реагирует на прокрутку
+        scroll|exitUntilCollapsed - сворачиваем до миниальной ширины
+        contentScrim - задаем цвет свернутого тулбара-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary">
+            <!--помещаем картинку  тоже в сворачивающуюся панель, паралакс - скорость прокрутки изображения
+            отличается от скорости прокрутки основного контента-->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/restaurant"
+                android:contentDescription="@string/restaurant_image"
+                app:layout_collapseMode="parallax" />
+            <!--сворачиваем до размера appBar
+            layout_collapseMode=pin - говорим что тулл бар закрепляется при сворачивании-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <!--помечаем, что должно прокручиваться-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding = "16dp" >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/order_name_hint" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/order_details_hint" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tips_title" />
+            <!--android:stretchColumns позволяет вам назначить строки, которые будут растянуты
+             чтобы заполнить свободное горизонтальное пространство у TableLayout.-->
+            <TableLayout
+                android:id="@+id/table_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1">
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_amount_title"
+                        android:layout_column="0"/>
+                    <!--android:numeric="decimal" - ограничивает вводимые значения decimal
+                    layout_span - слияние колонок-->
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/total_amount_value"
+                        android:numeric="decimal"
+                        android:layout_column="2"
+                        android:layout_span="2"/>
+                </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/number_of_people_title"
+                    android:layout_column="0"/>
+                <!--android:numeric="decimal" - ограничивает вводимые значения decimal
+                layout_span - слияние колонок-->
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/num_people_value"
+                    android:numeric="integer"
+                    android:layout_column="2"
+                    android:layout_span="2"/>
+            </TableRow>
+            <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tip_percentage_title"
+                android:layout_column="0"/>
+            </TableRow>
+            <TableRow>
+                <!--checked_button: устанавливает радио батн по умолчанию-->
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_group_tips"
+                    android:orientation="horizontal"
+                    android:layout_column="0"
+                    android:layout_span="3"
+                    android:checkedButton="@+id/tip_percent_1">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:id="@+id/tip_percent_1"
+                        android:text="@string/tip_percent_title_1"/>
+                    <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:id="@+id/tip_percent_2"
+                android:text="@string/tip_percent_title_2"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:id="@+id/tip_percent_other"
+                android:text="@string/tip_percent_title_other"/>
+                </RadioGroup>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numeric="decimal"
+                android:id="@+id/other_tip_value"/>
+            </TableRow>
+            <TableRow>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_reset"
+                    android:text="@string/btn_reset_title"
+                    android:layout_column="2"
+                    android:onClick="onMyButtonClick"/>
+                <Button
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_calculate"
+                    android:text="@string/btn_calculate_title"
+                    android:layout_column="3"
+                    android:onClick="onMyButtonClick"/>
+            </TableRow>
+                <!--пустое место между строками-->
+                <View
+                    android:layout_height="2px"
+                    android:layout_marginTop="5dip"
+                    android:layout_marginBottom="5dip"/>
+                <TableRow
+                    android:paddingBottom="10dip"
+                    android:paddingTop="5dip">
+                    <TextView
+                        android:text="@string/tip_amount_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:layout_span="2"
+                        android:id="@+id/tip_amount_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+                <TableRow
+                    android:paddingBottom="10dip"
+                    android:paddingTop="5dip">
+                    <TextView
+                        android:text="@string/total_pay_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:layout_span="2"
+                        android:id="@+id/total_pay_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+                <TableRow
+                    android:paddingBottom="10dip"
+                    android:paddingTop="5dip">
+                    <TextView
+                        android:text="@string/tip_person_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"/>
+                    <TextView
+                        android:layout_column="2"
+                        android:layout_span="2"
+                        android:id="@+id/tip_person_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <!--добавляем плавующую кнопку в координатор лэйаут-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_done_white_24dp"
+        android:onClick="onClickDone" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
